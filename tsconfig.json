@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "rootDir": "./",
+    "types": ["playwright", "node"],
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["**/*.ts"]
+}

@@ -1,14 +1,31 @@
 {
   "name": "qa-dojo6-exam",
   "version": "1.0.0",
-  "description": "",
+  "description": "Exam work for QA Dojo 6 course by Kostiantyn Bielozorov",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test-ui": "npx playwright test --ui"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Kostiantyn Bielozorov",
+  "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.55.0",
-    "@types/node": "^24.4.0"
+    "@types/node": "^24.4.0",
+    "@eslint/js": "^9.35.0",
+    "@eslint/json": "^0.13.2",
+    "@faker-js/faker": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
+    "dotenv": "^17.2.2",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-playwright": "^2.2.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-sonarjs": "^3.0.5",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8.43.0"
   }
 }
