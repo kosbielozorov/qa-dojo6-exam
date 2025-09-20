@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test-ui": "npx playwright test --ui",
-    "test": "npx playwright test ${DEFAULT_GREP_TYPE} ${grep} $DEFAULT_PROJECT"
+    "test": "npx playwright test ${DEFAULT_GREP_TYPE} ${grep} $DEFAULT_PROJECT",
+    "report": "npx playwright show-report pw-report"
   },
   "keywords": [],
   "author": "Kostiantyn Bielozorov",
