@@ -51,7 +51,7 @@ For viewing tests results locally, you need to run command in VS Code terminal:
 - in gitlab-ci.yml should define workflow of running tests
 - add run tests in "Schedule" (if needed)
 
-GITHUB CI/CD
+## GITHUB CI/CD
 
 ### Requirements
 
