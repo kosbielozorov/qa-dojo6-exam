@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 import * as dotenv from 'dotenv';
 
 /**
@@ -60,7 +60,7 @@ export default defineConfig({
   retries: process.env.CI ? Number(RETRIES) : 0,
   repeatEach: process.env.CI ? Number(REPEAT) : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 4 : 4,
+  workers: process.env.CI ? Number(WORKERS) : undefined,
   /* Preserve output based on environment */
   preserveOutput: process.env.CI ? 'failures-only' : 'always',
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -85,8 +85,32 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'Articles',
+      testMatch: ['**/articles.test.ts'],
+    },
+    {
+      name: 'Comments',
+      testMatch: ['**/comments.test.ts'],
+    },
+    {
+      name: 'Parameterized',
+      testMatch: ['**/parameterize.test.ts'],
+    },
+    {
+      name: 'Schemas',
+      testMatch: ['**/schemas.test.ts'],
+    },
+    {
+      name: 'Search',
+      testMatch: ['**/search.test.ts'],
+    },
+    {
+      name: 'Tags',
+      testMatch: ['**/tags.test.ts'],
+    },
+    {
+      name: 'Users',
+      testMatch: ['**/users.test.ts'],
     },
   ],
 });

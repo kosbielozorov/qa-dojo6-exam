@@ -1,13 +1,39 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      project:
+        required: true
+        description: ''
+        type: choice
+        options:
+          - 'Articles'
+          - 'Comments'
+          - 'Parameterized'
+          - 'Schemas'
+          - 'Search'
+          - 'Tags'
+          - 'Users'
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+        API_BASE_URL: ${{ vars.API_BASE_URL }}
+        NEW_USER_PASSWORD: ${{ vars.NEW_USER_PASSWORD }}
+        DEFAULT_GREP_TYPE: ${{ vars.DEFAULT_GREP_TYPE }}
+        grep: ${{vars.grep }}
+        FULLY_PARALLEL: ${{vars.FULLY_PARALLEL}}
+        TEST_TIMEOUT: ${{ vars.TEST_TIMEOUT }}
+        EXPECT_TIMEOUT: ${{ vars.EXPECT_TIMEOUT }}
+        REPEAT: ${{ vars.REPEAT }}
+        RETRIES: ${{ vars.RETRIES }}
+        WORKERS: ${{ vars.WORKERS }}
+        TRACE_VALUE: ${{ vars.TRACE_VALUE }}
     container:
       image: mcr.microsoft.com/playwright:v1.55.0-noble
     steps:
@@ -18,7 +44,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Run Playwright tests
-      run: npx playwright test
+      run: |
+          if [ "${{ github.event.inputs.project }}" != "" ]; then
+            xvfb-run npx playwright test -c playwright.config.ts --project=${{ github.event.inputs.project }}
+          else
+            npx playwright test
+          fi
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
