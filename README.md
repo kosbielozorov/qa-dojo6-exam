@@ -59,10 +59,10 @@ For viewing tests results locally, you need to run command in VS Code terminal:
 
 ### Setup
 
-- Add a `.github/workflows/playwright.yml` file in the root of your project.
-- Вказати актуальний Playwright docker-образ у workflow-файлі (наприклад, `mcr.microsoft.com/playwright:v1.55.0-noble`).
-- Визначити workflow для запуску тестів (див. приклад нижче).
-- За потреби додати розклад запуску тестів через [GitHub Actions schedule](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule).
+- Add a `.github/workflows/playwright.yml` file to the root of your project.
+- Specify the actual Playwright Docker image in the workflow file (for example, `mcr.microsoft.com/playwright:v1.55.0-noble`).
+- Define the workflow for running tests (see example below).
+- Optionally, add a test run schedule using [GitHub Actions schedule](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule).
 
 #### Приклад workflow для Playwright:
 
@@ -101,6 +101,7 @@ jobs:
 - `app/api` — implementation of API controllers (CRUD, authorization, etc.)
   - `controllers/Articles` — controllers for articles
   - `controllers/Comments` — controllers for comments
+  - `controllers/Schemas` — controllers for schemas
   - `controllers/Search` — controllers for search
   - `controllers/Tags` — controllers for tags
   - `controllers/Users` — controllers for users
@@ -119,6 +120,7 @@ app/
 │   ├── controllers/
 │   │   ├── Articles/
 │   │   ├── Comments/
+│   │   ├── Schemas/
 │   │   ├── Search/
 │   │   ├── Tags/
 │   │   └── Users/
@@ -205,13 +207,28 @@ Contributions are welcome! To add new tests or improve the framework, please fol
 
 ### Best practices
 
-- Follow the existing code style (ESLint, Prettier).
-- Add comments and JSDoc where necessary for clarity.
-- Validate API responses with status and property checks.
-- Prefer using environment variables for sensitive data.
-- Write both positive and negative test cases.
-- Keep tests fast and reliable; avoid unnecessary waits or dependencies.
-- Update the README if you add new features or change the test structure.
+You need to use this principles and approaches when creating tests:
+
+- **DRY (Don't Repeat Yourself):** Avoid code duplication by reusing helpers, schemas, and common logic. Centralize repeated patterns and utilities.
+- **KISS (Keep It Simple, Stupid):** Keep your tests and code simple, readable, and maintainable. Prefer straightforward solutions over complex ones.
+- **YAGNI (You Aren't Gonna Need It):** Only implement what is needed for current requirements. Avoid writing code for hypothetical future needs.
+- **SOLID (Single Responsibility Principle):** Each test, helper, or fixture should have one clear responsibility. This makes code easier to maintain and extend.
+- **Test Isolation:** Tests should be independent and not affect each other's state. Clean up after each test and avoid shared mutable state.
+- **Fail Fast:** Tests should quickly report errors and not hide failures. Use explicit assertions and avoid catching errors unless necessary for the test logic.
+- **Readability:** Test code should be clear and easy to understand for all team members. Use descriptive names, structure, and comments.
+- **Reusability:** Use shared helpers, fixtures, and schemas for repeated actions. Extract common logic to reusable modules.
+- **Explicit Assertions:** Assert exactly what matters for business logic, avoid implicit or overly broad checks.
+- **Consistent Naming:** Use clear and consistent names for tests, variables, and functions. Follow naming conventions across the project.
+- **Parameterization:** Use parameterized tests to cover multiple scenarios and edge cases efficiently.
+- **Deterministic Tests:** Tests should always produce the same result under the same conditions. Avoid randomness and external dependencies unless controlled.
+- **Small, Focused Tests:** Each test should verify one specific behavior or requirement. Avoid combining multiple checks in a single test.
+- **Follow the existing code style (ESLint, Prettier):** Maintain consistent formatting and linting across all files.
+- **Add comments and JSDoc where necessary for clarity:** Document complex logic and public APIs for helpers and fixtures.
+- **Validate API responses with status and property checks:** Always check both HTTP status and response body structure.
+- **Prefer using environment variables for sensitive data:** Never hardcode secrets or credentials in test code.
+- **Write both positive and negative test cases:** Cover success, failure, and edge scenarios for robust coverage.
+- **Keep tests fast and reliable; avoid unnecessary waits or dependencies:** Optimize for speed and stability, mock external services if needed.
+- **Update the README if you add new features or change the test structure:** Keep documentation up to date for all contributors.
 
 For major changes, please open an issue first to discuss what you would like to change.
 
