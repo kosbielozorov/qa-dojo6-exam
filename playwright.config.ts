@@ -60,7 +60,7 @@ export default defineConfig({
   retries: process.env.CI ? Number(RETRIES) : 0,
   repeatEach: process.env.CI ? Number(REPEAT) : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? Number(WORKERS) : 4,
+  workers: process.env.CI ? 4 : 4,
   /* Preserve output based on environment */
   preserveOutput: process.env.CI ? 'failures-only' : 'always',
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
