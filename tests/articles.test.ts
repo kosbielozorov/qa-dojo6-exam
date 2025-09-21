@@ -480,11 +480,11 @@ test.describe(
           createdArticle,
         },
       }) => {
-        const addArticleToFavoritesResponse =
+        const deleteArticleToFavoritesResponse =
           await articleController.addArticleToFavorites(createdArticle, token);
 
         await articleController.expectResponseStatusCode(
-          addArticleToFavoritesResponse,
+          deleteArticleToFavoritesResponse,
           200,
         );
 

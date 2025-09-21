@@ -126,7 +126,7 @@ test.describe(
     test(
       'CON-006 Sign in with existing user',
       {
-        tag: ['@CON-006', '@signin'],
+        tag: ['@CON-006'],
       },
       async ({
         registerNewUser: {
@@ -152,7 +152,7 @@ test.describe(
     test(
       'CON-007 Sign in with wrong password',
       {
-        tag: ['@CON-007', '@signin'],
+        tag: ['@CON-007'],
       },
       async ({
         registerNewUser: {
@@ -175,7 +175,7 @@ test.describe(
     test(
       'CON-008 Sign in with not existing email',
       {
-        tag: ['@CON-008', '@signin'],
+        tag: ['@CON-008'],
       },
       async ({
         registerNewUser: {
@@ -198,7 +198,7 @@ test.describe(
     test(
       'CON-009 Sign in with empty required fields',
       {
-        tag: ['@CON-009', '@signin'],
+        tag: ['@CON-009'],
       },
       async ({
         registerNewUser: {
